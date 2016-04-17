@@ -1,0 +1,19 @@
+{
+  "name": "node-adoc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "asciidocserver.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node asciidocserver.js"
+  },
+  "author": "Ralf Bensmann <ralf@art-of-coding.eu> (https://blog.art-of-coding.eu)",
+  "license": "ISC",
+  "dependencies": {
+    "asciidoctor.js": "^1.5.5-1",
+    "express": "^4.13.4",
+    "highlight.js": "^9.2.0",
+    "minimist": "^1.2.0",
+    "node-pandoc": "^0.2.0"
+  }
+}

@@ -122,6 +122,10 @@ function bookConfig(u) {
     };
 }
 
+function renderIndex(res, type) {
+    res.status(200).type('text').send('Not implemented yet');
+}
+
 const express = require('express');
 const app = express();
 
@@ -134,6 +138,7 @@ app.get(/favicon\.ico/, function(req, res) {
 app.get(regex, function(req, res) {
     const u = decodeUrl(req, regex);
     if (u.name == 'index') {
+        renderIndex(res, u.type);
     } else {
         switch (u.type) {
             case 'blog':
@@ -143,12 +148,12 @@ app.get(regex, function(req, res) {
                 Object.assign(u, bookConfig(u));
                 break;
         }
-    }
-    var canRenderContent = undefined !== u.baseDir && undefined !== u.filePath;
-    if (canRenderContent) {
-        renderContent(res, u);
-    } else {
-        res.status(404).type('text').send('Not found');
+        const canRenderContent = undefined !== u.baseDir && undefined !== u.filePath;
+        if (canRenderContent) {
+            renderContent(res, u);
+        } else {
+            res.status(404).type('text').send('Not found');
+        }
     }
 });
 

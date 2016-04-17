@@ -1,5 +1,5 @@
 {
-  "name": "node-adoc",
+  "name": "node-asciidocserver",
   "version": "1.0.0",
   "description": "",
   "main": "asciidocserver.js",

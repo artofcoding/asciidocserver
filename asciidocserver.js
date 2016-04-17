@@ -152,6 +152,8 @@ app.get(regex, function(req, res) {
     }
 });
 
-app.listen(3000, function() {
+app.listen(3000, '127.0.0.1', function() {
+    console.log('Root for blog entries: ' + blogContentDirectory);
+    console.log('Root for books: ' + bookContentDirectory);
     console.log('Listening on port 3000!');
 });

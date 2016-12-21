@@ -110,7 +110,7 @@ function blogConfig(u) {
     const b = path.resolve(blogContentDirectory);
     return {
         baseDir: b,
-        filePath: b + '/article/' + u.name + '.adoc'
+        filePath: b + '/' + u.name + '.adoc'
     };
 }
 

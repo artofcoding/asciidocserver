@@ -10,7 +10,7 @@
   "author": "Ralf Bensmann <ralf@art-of-coding.eu> (https://blog.art-of-coding.eu)",
   "license": "ISC",
   "dependencies": {
-    "asciidoctor.js": "^1.5.5-1",
+    "asciidoctor.js": "1.5.5-1",
     "express": "^4.13.4",
     "highlight.js": "^9.2.0",
     "minimist": "^1.2.0",

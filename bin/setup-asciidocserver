@@ -1,10 +1,19 @@
 #!/bin/bash
 
 execdir="$(pushd `dirname $0` >/dev/null ; pwd ; popd >/dev/null)"
+basedir="$(pushd ${execdir}/.. >/dev/null ; pwd ; popd >/dev/null)"
 
-sudo apt-get -y install npm nodejs
+if [ ! -f "$(which nodejs)" ]
+then
+    curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+    sudo apt-get install -y nodejs
+fi
+if [ ! -f "$(which npm)" ]
+then
+    sudo apt-get install -y npm
+fi
 
-pushd ${execdir}/.. >/dev/null
+pushd ${basedir} >/dev/null
 npm install
 popd >/dev/null
 
@@ -14,6 +23,7 @@ if [ ${systemd_running} -gt 0 -a ${upstart_running} -eq 0 ]
 then
     ${execdir}/setup-systemd
 elif [ ${systemd_running} -eq 0 -a ${upstart_running} -gt 0 ]
+then
     ${execdir}/setup-upstart
 else
     echo "Cannot determine if you're running systemd or upstart!"

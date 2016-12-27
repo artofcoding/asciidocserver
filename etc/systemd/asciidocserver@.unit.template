@@ -1,6 +1,6 @@
 [Unit]
 Description=asciidocserver
-After=network.target
+After=network-online.target
 
 [Service]
 Type=simple

@@ -1,0 +1,8 @@
+#!/bin/bash
+
+execdir="$(pushd `dirname $0` >/dev/null ; pwd ; popd >/dev/null)"
+
+sudo apt-get -y install npm nodejs
+${execdir}/setup-systemd
+
+exit $?

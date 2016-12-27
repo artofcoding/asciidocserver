@@ -1,0 +1,17 @@
+# asciidocserver
+
+description     "asciidocserver"
+author          "Ralf Bensmann <ralf@art-of-coding.eu>"
+
+start on (net-device-up
+          and local-filesystems
+          and runlevel [2345])
+stop on runlevel [016]
+
+respawn
+
+env PATH=/usr/bin:/usr/local/bin
+env HOME=/home/rootaid/eu.artofcoding.rootaid/asciidocserver
+env CONTENT_ROOT=/home/rootaid/eu.artofcoding.rootaid/rootbooks
+
+exec /usr/bin/node asciidocserver.js --bookroot=${CONTENT_ROOT}/book --blogroot=${CONTENT_ROOT}/blog

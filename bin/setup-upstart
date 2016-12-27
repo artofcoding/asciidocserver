@@ -1,0 +1,12 @@
+#!/bin/bash
+
+execdir="$(pushd `dirname $0` >/dev/null ; pwd ; popd >/dev/null)"
+basedir="$(pushd ${execdir}/.. >/dev/null ; pwd ; popd >/dev/null)"
+etcdir="${basedir}/etc"
+
+sudo cp ${etcdir}/upstart/asciidocserver.upstart.template /etc/init
+sudo initctl reload-configuration
+sudo initctl stop asciidocserver
+sudo initctl start asciidocserver
+
+exit 0

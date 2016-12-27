@@ -3,6 +3,22 @@
 execdir="$(pushd `dirname $0` >/dev/null ; pwd ; popd >/dev/null)"
 
 sudo apt-get -y install npm nodejs
-${execdir}/setup-systemd
 
-exit $?
+pushd ${execdir}/.. >/dev/null
+npm install
+popd >/dev/null
+
+systemd_running=$(ps ax | grep systemd | grep -v grep | wc -l)
+upstart_running=$(ps ax | grep upstart | grep -v grep | wc -l)
+if [ ${systemd_running} -gt 0 -a ${upstart_running} -eq 0 ]
+then
+    ${execdir}/setup-systemd
+elif [ ${systemd_running} -eq 0 -a ${upstart_running} -gt 0 ]
+    ${execdir}/setup-upstart
+else
+    echo "Cannot determine if you're running systemd or upstart!"
+    echo "Please execute setup-systemd or setup-upstart on your own."
+    exit 1
+fi
+
+exit 0

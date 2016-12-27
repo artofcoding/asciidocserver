@@ -1,0 +1,21 @@
+[Unit]
+Description=asciidocserver
+After=network.target
+
+[Service]
+Type=simple
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=asciidocserver
+Restart=always
+User=rootaid
+Group=rootaid
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=NODE_ENV=production
+Environment=ADOCSRV_PORT=300%i
+Environment=CONTENT_ROOT=/home/rootaid/eu.artofcoding.rootaid/rootbooks
+WorkingDirectory=/home/rootaid/eu.artofcoding.rootaid/asciidocserver/asciidocserver
+ExecStart=/usr/bin/node asciidocserver.js --bookroot=${CONTENT_ROOT}/book --blogroot=${CONTENT_ROOT}/blog
+
+[Install]
+WantedBy=multi-user.target

@@ -157,8 +157,10 @@ app.get(regex, function(req, res) {
     }
 });
 
-app.listen(3000, '127.0.0.1', function() {
+const port = process.env.ADOCSRV_PORT || 3000;
+
+app.listen(port, '127.0.0.1', function() {
+    console.log('Listening on port ' + port);
     console.log('Root for blog entries: ' + blogContentDirectory);
     console.log('Root for books: ' + bookContentDirectory);
-    console.log('Listening on port 3000!');
 });

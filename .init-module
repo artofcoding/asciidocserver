@@ -1,0 +1,17 @@
+#!/bin/bash
+
+execdir="$(pushd `dirname $0` >/dev/null ; pwd ; popd >/dev/null)"
+bindir="${execdir}/bin"
+
+echo "Setting up asciidocserver"
+${bindir}/setup-asciidocserver
+
+echo "Adding bin to PATH"
+echo >>${HOME}/.bashrc <<EOF
+
+# Rootaid
+PATH=${bindir}:\$PATH
+export PATH
+EOF
+
+exit 0

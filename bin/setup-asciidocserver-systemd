@@ -2,13 +2,13 @@
 
 bindir="$(pushd `dirname $0` >/dev/null ; pwd ; popd >/dev/null)"
 basedir="$(pushd ${bindir}/.. >/dev/null; pwd ; popd >/dev/null)"
-etcdir="${basedir}/etc"
+sharedir="${basedir}/share"
 rootbooksdir="${basedir}/rootbooks"
 
 # Bug "No such file or directory" systemctl link ${etcdir}
 #sudo cp ${etcdir}/systemd/asciidocserver@.service.template /etc/systemd/system/asciidocserver@.service
 t=systemd.unit.template.$$
-sudo cat ${etcdir}/systemd/asciidocserver@.unit.template \
+cat ${sharedir}/init/asciidocserver@.systemd.template \
     | sed "s#CONTENT_ROOT=.*#CONTENT_ROOT=${rootbooksdir}#" \
     | sed "s#WorkingDirectory=.*#WorkingDirectory=${basedir}#" \
     > $t

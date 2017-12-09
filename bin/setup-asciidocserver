@@ -21,10 +21,10 @@ systemd_running=$(ps ax | grep systemd | grep -v grep | wc -l)
 upstart_running=$(ps ax | grep upstart | grep -v grep | wc -l)
 if [ ${systemd_running} -gt 0 -a ${upstart_running} -eq 0 ]
 then
-    ${execdir}/setup-systemd
+    ${execdir}/setup-asciidocserver-systemd
 elif [ ${systemd_running} -eq 0 -a ${upstart_running} -gt 0 ]
 then
-    ${execdir}/setup-upstart
+    ${execdir}/setup-asciidocserver-upstart
 else
     echo "Cannot determine if you're running systemd or upstart!"
     echo "Please execute setup-systemd or setup-upstart on your own."
